@@ -6,7 +6,7 @@ const initialState = {
 
 function rootReducer(state = initialState, action) {
   if (action.type === GET_APP_DATA) {
-    state.appData = action.payload;
+    return Object.assign({}, state, { appData: action.payload });
   }
   return state;
 }

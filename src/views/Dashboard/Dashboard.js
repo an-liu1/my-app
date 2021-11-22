@@ -6,7 +6,6 @@ import { getAPPStatistics } from "../../redux/actions";
 export const Dashboard = (props) => {
   let handleOnClick = () => {
     props.getAPPStatistics();
-    console.log(props);
   };
   return (
     <div>
