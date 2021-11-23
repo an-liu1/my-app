@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 // import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { getAPPStatistics } from "../../redux/actions";
 
-export const Dashboard = (props) => {
+export const DashboardHook = (props) => {
+  const dispatch = useDispatch();
+  const appData = useSelector((state) => state.appData);
   const [count, setCount] = useState({
     count: 0,
     sum: 0,
@@ -22,7 +24,7 @@ export const Dashboard = (props) => {
   }, [count.count]);
 
   let handleOnClick = () => {
-    props.getAPPStatistics().then(() => {
+    dispatch(getAPPStatistics()).then(() => {
       console.log("Promise");
     });
   };
@@ -37,9 +39,9 @@ export const Dashboard = (props) => {
       <button type="button" onClick={() => handleOnClick()}>
         Click
       </button>
-      <p>{props.appData.appOpenTimes || 123}</p>
-      <p>{props.appData.carpool || 123}</p>
-      <p>{props.appData.user || 123}</p>
+      <p>{appData.appOpenTimes || 123}</p>
+      <p>{appData.carpool || 123}</p>
+      <p>{appData.user || 123}</p>
     </div>
   );
 };
@@ -48,16 +50,4 @@ export const Dashboard = (props) => {
 //   props: PropTypes,
 // };
 
-const mapStateToProps = (state) => {
-  return { appData: state.appData };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getAPPStatistics: async () => {
-      await dispatch(getAPPStatistics());
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+export default DashboardHook;
