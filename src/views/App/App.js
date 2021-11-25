@@ -1,33 +1,31 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import "./App.scss";
+import { Spin } from "antd";
+import { useSelector } from "react-redux";
+import TopNav from "../Layout/TopNav";
 import Dashboard from "../Dashboard/Dashboard";
 import DashboardHook from "../DashboardHook/DashboardHook";
 
 function App() {
+  const loading = useSelector((state) => state.loading);
   return (
-    <Router>
+    <Spin
+      tip="Loading..."
+      spinning={loading}
+      size="large"
+      style={{ maxHeight: "none", height: "100vh" }}
+    >
       <div className="App">
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/dashboard">Dashboard</Link>
-            </li>
-            <li>
-              <Link to="/dashboardhook">Dashboard Hook</Link>
-            </li>
-          </ul>
-        </nav>
+        <TopNav />
 
         <Routes>
+          <Route path="/" element={<Dashboard />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/dashboardhook" element={<DashboardHook />} />
         </Routes>
       </div>
-    </Router>
+    </Spin>
   );
 }
 

@@ -1,4 +1,5 @@
 import axios from "axios";
+import store from "./store";
 
 // const mainDomain = "http://localhost:3000/";
 const mainDomain = "https://andyliu.herokuapp.com/";
@@ -30,6 +31,7 @@ axios.interceptors.response.use(
         localStorage.clear();
         sessionStorage.clear();
       }
+      store.dispatch({ type: "SWITCH_LOADING", payload: false });
       return Promise.reject(error);
     }
     return Promise.reject(error);
