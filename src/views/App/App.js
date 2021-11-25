@@ -4,6 +4,7 @@ import "./App.scss";
 import { Spin } from "antd";
 import { useSelector } from "react-redux";
 import TopNav from "../Layout/TopNav";
+import Home from "../Home/Home";
 import Dashboard from "../Dashboard/Dashboard";
 import DashboardHook from "../DashboardHook/DashboardHook";
 
@@ -20,9 +21,11 @@ function App() {
         <TopNav />
 
         <Routes>
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/dashboardhook" element={<DashboardHook />} />
+          <Route path="*" element={<Home />} />
         </Routes>
       </div>
     </Spin>

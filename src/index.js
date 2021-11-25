@@ -15,7 +15,7 @@ import store from "./redux/store";
 import { persistor } from "./redux/store";
 import { PersistGate } from "redux-persist/lib/integration/react";
 
-// create component shorcut:   rfreduxp
+// create component shorcut:   rafce
 
 ReactDOM.render(
   <React.StrictMode>

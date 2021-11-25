@@ -7,7 +7,7 @@ export const TopNav = () => {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
   useEffect(() => {
-    let navKey = pathname === "/" ? "/dashboard" : pathname;
+    let navKey = pathname === "/" ? "/home" : pathname;
     dispatch({ type: "SWITCH_NAV", payload: navKey });
   }, [pathname, dispatch]);
   const navKey = useSelector((state) => state.navKey);
@@ -15,6 +15,11 @@ export const TopNav = () => {
     dispatch({ type: "SWITCH_NAV", payload: e.key });
   };
   const navItem = [
+    {
+      key: "/home",
+      name: "Home",
+      link: "/home",
+    },
     {
       key: "/dashboard",
       name: "Dashboard",
